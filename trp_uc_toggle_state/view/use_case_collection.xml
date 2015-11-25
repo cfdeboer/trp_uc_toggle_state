@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="use_case_collection_form" model="ir.ui.view">
+            <field name="name">Use case collection form</field>
+            <field name="model">use_case.collection</field>
+            <field name="inherit_id" ref="trp_use_case.use_case_collection_form"/>
+            <field name="arch" type="xml">
+                <field name="name" position="before">    
+                    <field name="state"/>
+                    <button name="draft_open_done_toggle" type="object"
+                        string="Toggle Draft/Open/Done" class="oe_highlight"
+                        groups='base.group_user'
+                        />
+
+                </field>    
+            </field>
+        </record>
+
+        <record id="use_case_collection_tree" model="ir.ui.view">
+            <field name="name">Use case collection tree</field>
+            <field name="model">use_case.collection</field>
+            <field name="inherit_id" ref="trp_use_case.use_case_collection_tree"/>
+            <field name="arch" type="xml">
+
+                <tree position="attributes">
+                     <attribute name="colors">red:state == 'draft'; blue: state== 'open'; green: state=='done'</attribute>
+                </tree>
+
+                    <field name="hours_total" position="before">    
+                        <field name="state"/> 
+                    </field>
+
+                    <field name='hours_total' position="before">
+                        <button name="draft_open_done_toggle" type="object"
+                            string="Toggle State" class="oe_highlight"
+                            groups='base.group_user'  bgcolor="green"/>
+                    </field>
+
+                
+                
+                </field>
+        </record>
+
+
+
+
+
+        <!--Filters -->
+         <record id="view_filter_use_case_collection" model="ir.ui.view">
+            <field name="name">Use Case Set Filter</field>
+            <field name="model">use_case.collection</field>
+      <!-- <field name="inherit_id" ref="trp_use_case.view_filter_use_case_collection"/>-->
+
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <filter name="draft_open" string="Draft or Open"
+                        domain="['|',('state','=','draft'),('state','=','open')]"/>
+                    <filter name="done" string="Done"
+                        domain="[('state','=','done')]"/>
+                    <filter name="context">{'search_default_name: "draft_open"}</filter>
+                </search>
+            </field>
+        </record>
+
+        <!--default filter it works!  ->
+        <record model="ir.actions.act_window" id="action_use_case_collections">
+           <field name="context">{'search_default_draft_open': 1}</field>
+       </record> -->   
+    </data>
+</openerp>

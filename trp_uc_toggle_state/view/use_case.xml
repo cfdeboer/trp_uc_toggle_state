@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="use_case_form" model="ir.ui.view">
+            <field name="name">Use case form</field>
+            <field name="model">use_case</field>
+            <field name="inherit_id" ref="trp_use_case.use_case_form"/>
+
+            <field name="arch" type="xml">
+               
+                <field name='active' position='after'>
+                      <button name="draft_open_done_toggle" type="object"
+                       string="Toggle Draft-Open-Done" class="oe_highlight"
+                       groups="base.group_user"/>
+               </field>
+
+                <field name="active" position="after">    
+                     <field name="state"/> 
+                 </field>
+
+
+
+            </field>
+        </record>
+
+        <record id="use_case_tree" model="ir.ui.view">
+            <field name="name">Use case tree</field>
+            <field name="model">use_case</field>
+            <field name="inherit_id" ref="trp_use_case.use_case_tree"/>
+            <field name="arch" type="xml">
+                <tree position="attributes">
+                    <attribute name="colors">red:state == 'draft'; blue: state== 'open'; green: state=='done'</attribute>
+                </tree>
+                
+                <field name="number" position="before">    
+                   <field name="state"/>
+               </field>
+
+               <field name='number' position='before'>
+                   <button name="draft_open_done_toggle" type="object"
+                       string="Toggle State" class="oe_highlight"
+                       groups="base.group_user"/>
+               </field>
+
+
+            </field>
+        </record>
+
+
+
+
+    </data>
+</openerp>
