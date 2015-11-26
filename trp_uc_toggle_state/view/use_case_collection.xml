@@ -34,7 +34,7 @@
                     <field name='hours_total' position="before">
                         <button name="draft_open_done_toggle" type="object"
                             string="Toggle State" class="oe_highlight"
-                            groups='base.group_user'  bgcolor="green"/>
+                            groups='base.group_user'/>
                     </field>
 
                 
