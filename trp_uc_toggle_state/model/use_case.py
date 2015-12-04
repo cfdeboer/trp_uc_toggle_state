@@ -40,20 +40,8 @@ class use_case(models.Model):
 
 
 
-class use_case_collection(models.Model):
+class use_case_collection(use_case):
      _inherit = 'use_case.collection'
-     _description = 'Use Case Toggle State'
-     state = fields.Selection( [('draft', 'Draft'),
-           ('open', 'Open'),('done', 'Done')],
-            string='State', default='draft')
-     @api.one
-     def draft_open_done_toggle(self):
-       if (self.state == 'draft'):
-         self.state = 'open'
-       elif(self.state == 'open'):
-         self.state = 'done'
-       elif(self.state == 'done'):
-         self.state = 'draft'
-       return True
+     
 
 
